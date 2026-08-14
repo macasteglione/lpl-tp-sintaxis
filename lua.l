@@ -6,7 +6,6 @@
 
 %%
 
-:: { return LABELSEP; }
 goto { return GOTO; }
 and { return AND; }
 false { return FALSE; }
@@ -30,35 +29,48 @@ end { return END; }
 in { return IN; }
 return { return RETURN; }
 
-= { return ASIGN; }
-+ { return ADD; }
-& { return AMPERSAND; }
-== { return COMPARE; }
-( { return OPARENTESIS; }
-) { return CPARENTESIS; }
-; { return SEMICOLON; }
-- { return SUB; }
-~ { return COMMA; }
-~= { return APROX; }
-: { return COLON; }
-* { return MUL; }
-| { return PIPE; }
-<= { return MINOREQUAL; }
->= { return MAJOREQUAL; }
-< { return MINOR; }
-> { return MAJOR; }
-{ { return OCURLYBRAKET; }
-} { return CCURLYBRAKET; }
+"::" { return LABELSEP; }
+"=" { return ASIGN; }
+"+" { return ADD; }
+"&" { return AMPERSAND; }
+"==" { return COMPARE; }
+"(" { return OPARENTESIS; }
+")" { return CPARENTESIS; }
+";" { return SEMICOLON; }
+"-" { return SUB; }
+"~" { return TILDE; }
+"~=" { return APROX; }
+":" { return COLON; }
+"*" { return MUL; }
+"|" { return PIPE; }
+"<=" { return MINOREQUAL; }
+">=" { return MAJOREQUAL; }
+"<" { return MINOR; }
+">" { return MAJOR; }
+"{" { return OCURLYBRAKET; }
+"}" { return CCURLYBRAKET; }
+"[" { return OBRAKET; }
+"]" { return CBRAKET; }
+"," { return COMMA; }
+"." { return DOT; }
+".." { return DDOT; }
+"..." { return TDOT; }
+"%" { return MODULE; }
+"^" { return CARET; }
+"#" { return HASH; }
+">>" { return RSHIFT; }
+"<<" { return LSHIFT; }
+"//" { return FLOOR; }
 
 [0-9]+\.[0-9]+ { yylval.num = atof(yytext); return NUMERAL; }
 [A-Za-z_][A-Za-z0-9_]* { yylval.str = strdup(yytext); return NAME; }
 
 [ \t\n]+ { } // Limpia espacios
 
-.			{ 
-			printf("Error de sintaxis en línea %d [%s]\n", yylineno, yytext);
-			exit(1);
-			}
+. {
+      printf("Error de sintaxis en línea %d [%s]\n", yylineno, yytext);
+      exit(1);
+	}
 
 %%
 

@@ -45,12 +45,43 @@ float eval(char *s);
 %token ASIGN
 %token <num> NUMERAL
 
+%token ADD;
+%token AMPERSAND;
+%token COMPARE;
+%token OPARENTESIS;
+%token CPARENTESIS;
+%token SEMICOLON;
+%token SUB;
+%token TILDE;
+%token APROX;
+%token COLON;
+%token MUL;
+%token PIPE;
+%token MINOREQUAL;
+%token MAJOREQUAL;
+%token MINOR;
+%token MAJOR;
+%token OCURLYBRAKET;
+%token CCURLYBRAKET;
+%token OBRAKET;
+%token CBRAKET;
+%token COMMA;
+%token DOT;
+%token DDOT;
+%token TDOT;
+%token MODULE;
+%token CARET;
+%token HASH;
+%token RSHIFT;
+%token LSHIFT;
+%token FLOOR;
+
 %%
 
 programa:
-       /* vacío */
-       | sentencia programa
-       ;
+      /* vacío */
+      | sentencia programa
+      ;
 
 sentencia:
         LABELSEP NAME LABELSEP { printf("Label: %s\n", $2); }
@@ -69,7 +100,7 @@ exp:
 
 varlist:
       var
-      | var SEP varlist
+      | var COMMA varlist
       ;
 
 %%
